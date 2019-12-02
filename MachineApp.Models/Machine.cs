@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MachineApp.Models
@@ -33,9 +34,9 @@ namespace MachineApp.Models
     /// </summary>
     public interface IMachineRepository
     {
-        Task<Machine> AddMachineAsync();                    // 입력
+        Task<Machine> AddMachineAsync(Machine machine);     // 입력
         Task<List<Machine>> GetMachinesAsync();             // 출력: GetAll(), GetAllMachines()
-        Task<Machine> GetMachineByIdAsync();                // 상세: GetById(), FindById()
+        Task<Machine> GetMachineByIdAsync(int id);          // 상세: GetById(), FindById()
         Task<Machine> EditMachineAsync(Machine machine);    // 수정: Update()
         Task DeleteMachine(int id);                         // 삭제: Remove()
     }
@@ -88,30 +89,50 @@ namespace MachineApp.Models
     /// </summary>
     public class MachineRepository : IMachineRepository
     {
-        public Task<Machine> AddMachineAsync()
+        private readonly MachineDbContext _context;
+
+        public MachineRepository(MachineDbContext context)
         {
-            throw new System.NotImplementedException();
+            this._context = context;
         }
 
-        public Task<List<Machine>> GetMachinesAsync()
+        // 입력
+        public async Task<Machine> AddMachineAsync(Machine machine)
         {
-            throw new System.NotImplementedException();
+            await _context.AddAsync<Machine>(machine);
+            await _context.SaveChangesAsync();
+            return machine; 
         }
 
-        public Task<Machine> GetMachineByIdAsync()
+        // 출력
+        public async Task<List<Machine>> GetMachinesAsync()
         {
-            throw new System.NotImplementedException();
+            return await _context.Machines.OrderByDescending(m => m.Id).ToListAsync();
         }
 
-        public Task<Machine> EditMachineAsync(Machine machine)
+        // 상세보기
+        public async Task<Machine> GetMachineByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            return await _context.Machines.Where(m => m.Id == id).SingleOrDefaultAsync();
         }
 
-        public Task DeleteMachine(int id)
+        // 수정
+        public async Task<Machine> EditMachineAsync(Machine machine)
         {
-            throw new System.NotImplementedException();
+            _context.Entry<Machine>(machine).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return machine; 
+        }
+
+        // 삭제
+        public async Task DeleteMachine(int id)
+        {
+            var machine = await _context.Machines.Where(m => m.Id == id).SingleOrDefaultAsync();
+            if (machine != null)
+            {
+                _context.Machines.Remove(machine);
+                await _context.SaveChangesAsync(); 
+            }
         }
     }
-
 }
