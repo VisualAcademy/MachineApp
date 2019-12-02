@@ -18,3 +18,23 @@ MachineApp
 	.NET Standard 프로젝트(2.0, 2.1): 2.0 버전 
 		MachineApp.Models
 
+			Machine.cs
+				Id
+				Name
+
+			IMachineRepositoryAsync.cs
+				IMachineRepository.cs
+					CRUD
+						ABCD
+						Bread
+						BreadShop						
+						AGED
+
+			MachineRepositoryAsync.cs
+				MachineRepositoryAsyncAdoNet.cs -> ADO.NET
+				MachineRepositoryAsyncDapper.cs -> Dapper
+				MachineRepositoryAsyncEfCore.cs -> Entity Framework Core <- EF Core 사용
+					MachineRepository.cs
+
+			MachineDbContext.cs
+
