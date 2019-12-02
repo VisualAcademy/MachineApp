@@ -21,7 +21,7 @@ namespace MachineApp.Models
         // 입력
         public async Task<Machine> AddMachineAsync(Machine machine)
         {
-            await _context.AddAsync<Machine>(machine);
+            await _context.AddAsync(machine);
             await _context.SaveChangesAsync();
             return machine; 
         }
@@ -41,7 +41,7 @@ namespace MachineApp.Models
         // 수정
         public async Task<Machine> EditMachineAsync(Machine machine)
         {
-            _context.Entry<Machine>(machine).State = EntityState.Modified;
+            _context.Entry(machine).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return machine; 
         }
