@@ -114,6 +114,23 @@ namespace MachineApp.Models.Tests
                 Assert.AreEqual(4, await context.Machines.CountAsync());
                 Assert.IsNull(await repository.GetMachineByIdAsync(5));
             }
+
+            //[6][1][6] GetMachinesPageAsync() Method Test
+            //[6][1][6][1] DbContext 개체 생성 및 추가 데이터 입력
+            using (var context = new MachineDbContext(options))
+            {
+                // Empty
+            }
+
+            //[6][1][6][2] 2번째 페이지의 First 항목 체크
+            using (var context = new MachineDbContext(options))
+            {
+                var repository = new MachineRepository(context);
+                var machines = await repository.GetMachinesPageAsync(1, 2); // 4, 3, [2, 1]
+
+                Assert.AreEqual("[2] Rugged Extreame", machines.Records.FirstOrDefault().Name);
+                Assert.AreEqual(4, machines.TotalRecords); 
+            }
         }
     }
 }
