@@ -38,7 +38,7 @@ namespace MachineApp.Models
         Task<List<Machine>> GetMachinesAsync();             // 출력: GetAll(), GetAllMachines()
         Task<Machine> GetMachineByIdAsync(int id);          // 상세: GetById(), FindById()
         Task<Machine> EditMachineAsync(Machine machine);    // 수정: Update()
-        Task DeleteMachine(int id);                         // 삭제: Remove()
+        Task DeleteMachineAsync(int id);                    // 삭제: Remove()
     }
     
     /// <summary>
@@ -125,7 +125,7 @@ namespace MachineApp.Models
         }
 
         // 삭제
-        public async Task DeleteMachine(int id)
+        public async Task DeleteMachineAsync(int id)
         {
             var machine = await _context.Machines.Where(m => m.Id == id).SingleOrDefaultAsync();
             if (machine != null)

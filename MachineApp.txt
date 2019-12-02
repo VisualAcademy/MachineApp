@@ -38,4 +38,12 @@ MachineApp
 				MachineRepositoryAsyncEfCore.cs -> Entity Framework Core <- EF Core 사용
 					MachineRepository.cs
 
+(4) 테스트 프로젝트: MSTest, xUnit, nUnit, ...
+	MSTest + .NET Core + Unit Test
+
+	// Install-Package Microsoft.EntityFrameworkCore.SqlServer
+	// Install-Package Microsoft.EntityFrameworkCore.InMemory
+	
+
+
 
