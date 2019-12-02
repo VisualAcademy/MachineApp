@@ -14,3 +14,7 @@ MachineApp
 
 > git clone https://github.com/VisualAcademy/MachineApp
 
+(3) 클래스 라이브러리 프로젝트
+	.NET Standard 프로젝트(2.0, 2.1): 2.0 버전 
+		MachineApp.Models
+
