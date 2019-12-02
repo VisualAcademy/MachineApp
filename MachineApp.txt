@@ -30,11 +30,12 @@ MachineApp
 						BreadShop						
 						AGED
 
+			MachineDbContext.cs
+
 			MachineRepositoryAsync.cs
 				MachineRepositoryAsyncAdoNet.cs -> ADO.NET
 				MachineRepositoryAsyncDapper.cs -> Dapper
 				MachineRepositoryAsyncEfCore.cs -> Entity Framework Core <- EF Core »ç¿ë
 					MachineRepository.cs
 
-			MachineDbContext.cs
 
