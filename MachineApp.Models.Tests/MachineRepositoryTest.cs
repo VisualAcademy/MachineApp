@@ -8,19 +8,21 @@ using System.Threading.Tasks;
 
 namespace MachineApp.Models.Tests
 {
+    //[6] Test Class
     [TestClass]
     public class MachineRepositoryTest
     {
+        //[6][1] Test Method
         [TestMethod]
         public async Task MachineRepositoryMethodAllTest()
         {
-            //[0] DbContextOptions 개체 생성
+            //[6][1][0] DbContextOptions 개체 생성
             var options = new DbContextOptionsBuilder<MachineDbContext>()
                 .UseInMemoryDatabase(databaseName: "MachineApp").Options;
 
-            //[1] Add() Method Test
+            //[6][1][1] Add() Method Test
             using (var context = new MachineDbContext(options))
-            //[1][1] DbContext 개체 생성 및 데이터 입력
+            //[6][1][1][1] DbContext 개체 생성 및 데이터 입력
             {
                 //[?] Repository Object Creation
                 var repository = new MachineRepository(context);
@@ -29,7 +31,7 @@ namespace MachineApp.Models.Tests
                 await context.SaveChangesAsync(); //[!]
             }
 
-            //[1][2] 제대로 입력되었는지 테스트 
+            //[6][1][1][2] 제대로 입력되었는지 테스트 
             using (var context = new MachineDbContext(options))
             {
                 Assert.AreEqual(1, await context.Machines.CountAsync());
@@ -37,8 +39,8 @@ namespace MachineApp.Models.Tests
                 Assert.AreEqual("[1] T7910", machine.Name);
             }
 
-            //[2] GetAll() Method Test
-            //[2][1] DbContext 개체 생성 및 추가 데이터 입력
+            //[6][1][2] GetAll() Method Test
+            //[6][1][2][1] DbContext 개체 생성 및 추가 데이터 입력
             using (var context = new MachineDbContext(options))
             {
                 await (new MachineRepository(context)).AddMachineAsync(
@@ -47,7 +49,7 @@ namespace MachineApp.Models.Tests
                 await context.SaveChangesAsync(); //[!]
             }
 
-            //[2][2] 제대로 출력되는지 테스트 
+            //[6][1][2][2] 제대로 출력되는지 테스트 
             using (var context = new MachineDbContext(options))
             {
                 var repository = new MachineRepository(context);
@@ -55,8 +57,8 @@ namespace MachineApp.Models.Tests
                 Assert.AreEqual(3, machines.Count()); // 현재까지 3개 테스트
             }
 
-            //[3] GetById() Method Test
-            //[3][1] DbContext 개체 생성 및 추가 데이터 입력
+            //[6][1][3] GetById() Method Test
+            //[6][1][3][1] DbContext 개체 생성 및 추가 데이터 입력
             using (var context = new MachineDbContext(options))
             {
                 await (new MachineRepository(context)).AddMachineAsync(
@@ -64,7 +66,7 @@ namespace MachineApp.Models.Tests
                 await context.SaveChangesAsync(); //[!]
             }
 
-            //[3][2] 제대로 출력되는지 테스트 
+            //[6][1][3][2] 제대로 출력되는지 테스트 
             using (var context = new MachineDbContext(options))
             {
                 var repository = new MachineRepository(context);
@@ -73,8 +75,8 @@ namespace MachineApp.Models.Tests
                 Assert.AreEqual("[3] Alienware Aurora R8", alienware.Name);
             }
 
-            //[4] Edit() Method Test
-            //[4][1] DbContext 개체 생성 및 추가 데이터 입력
+            //[6][1][4] Edit() Method Test
+            //[6][1][4][1] DbContext 개체 생성 및 추가 데이터 입력
             using (var context = new MachineDbContext(options))
             {
                 await (new MachineRepository(context)).AddMachineAsync(
@@ -82,7 +84,7 @@ namespace MachineApp.Models.Tests
                 await context.SaveChangesAsync(); //[!]
             }
 
-            //[4][2] 제대로 수정되는지 테스트 
+            //[6][1][4][2] 제대로 수정되는지 테스트 
             using (var context = new MachineDbContext(options))
             {
                 var repository = new MachineRepository(context);
@@ -95,14 +97,14 @@ namespace MachineApp.Models.Tests
                 Assert.AreEqual("[5] 서피스 프로", newSurface.Name);
             }
 
-            //[5] Delete() Method Test
-            //[5][1] DbContext 개체 생성 및 추가 데이터 입력
+            //[6][1][5] Delete() Method Test
+            //[6][1][5][1] DbContext 개체 생성 및 추가 데이터 입력
             using (var context = new MachineDbContext(options))
             {
                 // Empty
             }
 
-            //[5][2] 제대로 삭제되는지 테스트 
+            //[6][1][5][2] 제대로 삭제되는지 테스트 
             using (var context = new MachineDbContext(options))
             {
                 var repository = new MachineRepository(context);
