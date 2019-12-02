@@ -1,0 +1,16 @@
+MachineApp
+    Machines: 하드웨어 자산 관리
+
+(1) SQL Server Database Project 
+
+데이터베이스: SQL Server -> SQL Server Database Project, SSMS, ADS
+    MachineApp 데이터베이스 
+        Machines 테이블
+            Id
+            Name
+            ...
+
+(2) GitHub에 소스 게시
+
+> git clone https://github.com/VisualAcademy/MachineApp
+
