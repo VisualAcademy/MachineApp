@@ -21,7 +21,7 @@ namespace MachineApp.Models
         // 입력
         public async Task<Machine> AddMachineAsync(Machine machine)
         {
-            await _context.AddAsync(machine);
+            _context.Add(machine);
             await _context.SaveChangesAsync();
             return machine; 
         }
