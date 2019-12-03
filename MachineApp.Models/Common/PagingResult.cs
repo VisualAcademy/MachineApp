@@ -3,7 +3,7 @@
 namespace MachineApp.Models.Common
 {
     /// <summary>
-    /// Paging 처리된 레코드셋과 전체 레코드 카운
+    /// Paging 처리된 레코드셋과 전체 레코드 카운트
     /// </summary>
     /// <typeparam name="T">Model Class</typeparam>
     public struct PagingResult<T>
