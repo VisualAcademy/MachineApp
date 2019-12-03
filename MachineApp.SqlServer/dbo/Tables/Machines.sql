@@ -5,6 +5,9 @@ CREATE TABLE [dbo].[Machines]
 
 	[Name] NVarChar(255) Not Null,					-- H/W Name
 
+	-- TODO: Columns Add Region
+
+
 	-- AuditableBase.cs 참조
 	[CreatedBy] NVarChar(255) Null,			-- 등록자(Creator)
 	[Created] DateTime Default(GetDate()),	-- 생성일
