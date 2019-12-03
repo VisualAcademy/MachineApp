@@ -125,8 +125,11 @@ namespace MachineApp.Models.Tests
             //[6][1][6][2] 2번째 페이지의 First 항목 체크
             using (var context = new MachineDbContext(options))
             {
+                int pageIndex = 1;
+                int pageSize = 2;
+
                 var repository = new MachineRepository(context);
-                var machines = await repository.GetMachinesPageAsync(1, 2); // 4, 3, [2, 1]
+                var machines = await repository.GetMachinesPageAsync(pageIndex, pageSize); // 4, 3, [2, 1]
 
                 Assert.AreEqual("[2] Rugged Extreame", machines.Records.FirstOrDefault().Name);
                 Assert.AreEqual(4, machines.TotalRecords); 
