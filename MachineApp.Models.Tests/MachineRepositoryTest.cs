@@ -20,7 +20,7 @@ namespace MachineApp.Models.Tests
             var options = new DbContextOptionsBuilder<MachineDbContext>()
                 .UseInMemoryDatabase(databaseName: "MachineApp").Options;
 
-            //[6][1][1] Add() Method Test
+            //[6][1][1] AddAsync() Method Test
             using (var context = new MachineDbContext(options))
             //[6][1][1][1] DbContext 개체 생성 및 데이터 입력
             {
@@ -38,7 +38,7 @@ namespace MachineApp.Models.Tests
                 Assert.AreEqual("[1] T7910", machine.Name);
             }
 
-            //[6][1][2] GetAll() Method Test
+            //[6][1][2] GetAllAsync() Method Test
             //[6][1][2][1] DbContext 개체 생성 및 추가 데이터 입력
             using (var context = new MachineDbContext(options))
             {
@@ -55,7 +55,7 @@ namespace MachineApp.Models.Tests
                 Assert.AreEqual(3, machines.Count()); // 현재까지 3개 테스트
             }
 
-            //[6][1][3] GetById() Method Test
+            //[6][1][3] GetByIdAsync() Method Test
             //[6][1][3][1] DbContext 개체 생성 및 추가 데이터 입력
             using (var context = new MachineDbContext(options))
             {
@@ -72,7 +72,7 @@ namespace MachineApp.Models.Tests
                 Assert.AreEqual("[3] Alienware Aurora R8", alienware.Name);
             }
 
-            //[6][1][4] Edit() Method Test
+            //[6][1][4] EditAsync() Method Test
             //[6][1][4][1] DbContext 개체 생성 및 추가 데이터 입력
             using (var context = new MachineDbContext(options))
             {
@@ -93,7 +93,7 @@ namespace MachineApp.Models.Tests
                 Assert.AreEqual("[5] 서피스 프로", newSurface.Name);
             }
 
-            //[6][1][5] Delete() Method Test
+            //[6][1][5] DeleteAsync() Method Test
             //[6][1][5][1] DbContext 개체 생성 및 추가 데이터 입력
             using (var context = new MachineDbContext(options))
             {
@@ -110,6 +110,7 @@ namespace MachineApp.Models.Tests
                 Assert.AreEqual(4, await context.Machines.CountAsync());
                 Assert.IsNull(await repository.GetMachineByIdAsync(5));
             }
+
             //[6][1][6] GetMachinesPageAsync() Method Test
             //[6][1][6][1] DbContext 개체 생성 및 추가 데이터 입력
             using (var context = new MachineDbContext(options))
