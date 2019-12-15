@@ -38,11 +38,17 @@ namespace MachineApp.Models
         {
             // Machines 테이블의 Created 열은 자동으로 GetDate() 제약 조건을 부여하기 
             modelBuilder.Entity<Machine>().Property(m => m.Created).HasDefaultValueSql("GetDate()");
+            modelBuilder.Entity<Media>().Property(m => m.Created).HasDefaultValueSql("GetDate()");
+            modelBuilder.Entity<MachineMedia>().Property(m => m.Created).HasDefaultValueSql("GetDate()");
         }
 
         /// <summary>
         /// MachineApp 
         /// </summary>
         public DbSet<Machine> Machines { get; set; }
+
+        public DbSet<Media> Medias { get; set; }
+
+        public DbSet<MachineMedia> MachinesMedias { get; set; }
     }
 }
